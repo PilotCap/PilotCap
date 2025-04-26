@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Infra
+  mongodb:
+    image: mongo
+    ports: ["27017:27017"]
+    volumes: ["mongodb_data:/data/db"]
+  
+  redis:
+    image: redis
+    ports: ["6379:6379"]
+  
+  kafka:
+    image: bitnami/kafka:latest
+    ports: ["9092:9092"]
+    environment:
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+
+  # Gateway
+  gateway:
+    build: ./gateway
+    ports: ["3000:3000"]
+    depends_on: ["auth", "users"]
+    environment:
+      - AUTH_SERVICE_URL=http://auth:3001
+      - USERS_SERVICE_URL=http://users:3002
+
+  # Microservices
+  auth:
+    build: ./services/auth
+    ports: ["3001:3001"]
+    depends_on: ["mongodb"]
+
+  users:
+    build: ./services/users
+    ports: ["3002:3002"]
+    depends_on: ["mongodb"]
+
+volumes:
+  mongodb_data:
