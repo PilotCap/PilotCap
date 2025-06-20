@@ -1,14 +1,16 @@
-import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
-import { provideServerRendering } from '@angular/platform-server';
-import { provideServerRouting } from '@angular/ssr';
-import { appConfig } from './app.config';
-import { serverRoutes } from './app.routes.server';
+import { ApplicationConfig } from '@angular/core';
+import { provideServerRendering } from '@angular/ssr';
+import { provideRouter, Routes } from '@angular/router';
+import { LoginComponent } from './components/auth/login/login.component';
 
-const serverConfig: ApplicationConfig = {
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }
+];
+
+export const appConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
-    provideServerRouting(serverRoutes)
+    provideRouter(routes)
   ]
 };
-
-export const config = mergeApplicationConfig(appConfig, serverConfig);

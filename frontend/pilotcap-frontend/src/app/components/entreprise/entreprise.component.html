@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propositions reçues | PilotCap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            accent: '#f43f5e',
+            dark: '#0f172a',
+            card: '#1e293b',
+            success: '#10b981',
+            warning: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif']
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-accent {
+      background-image: linear-gradient(to right, #6366f1, #f43f5e);
+      background-size: 200% auto;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-accent:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+    }
+    
+    .status-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .investor-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-dark font-sans text-gray-300 min-h-screen">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-dark/90 backdrop-blur-md border-b border-gray-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <i class="fas fa-chart-line text-white text-lg"></i>
+        </div>
+        <h1 class="text-2xl font-display font-bold">Pilot<span class="gradient-text">Cap</span></h1>
+      </div>
+      
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="#" class="text-gray-400 hover:text-white transition relative group">
+          <span>Accueil</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#" class="text-white font-semibold relative group">
+          <span>Espace Entreprise</span>
+          <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-accent"></span>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white transition relative group">
+          <span>Tableau de bord</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+      </nav>
+      
+      <div class="flex items-center space-x-4">
+        <div class="relative">
+          <button class="text-gray-300 hover:text-white transition">
+            <i class="fas fa-bell text-xl"></i>
+            <span class="status-badge bg-accent text-white">3</span>
+          </button>
+        </div>
+        <div class="hidden md:flex items-center space-x-2">
+          <span class="text-sm font-medium">Mon Entreprise</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-[calc(100vh-160px)] py-12 px-4">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-card border border-gray-700 mb-4">
+          <i class="fas fa-envelope-open-text text-accent mr-2"></i>
+          <span class="text-sm font-semibold">PROPOSITIONS RECEIVED</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-display font-bold mt-2 mb-3">Propositions <span class="gradient-text">reçues</span></h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">Gérez les offres d'investissement pour votre entreprise</p>
+      </div>
+      
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-card border border-gray-700 rounded-xl p-5 card-hover">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400 text-sm">Propositions totales</p>
+              <h3 class="text-2xl font-bold mt-1">8</h3>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <i class="fas fa-envelope text-primary text-xl"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-card border border-gray-700 rounded-xl p-5 card-hover">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400 text-sm">Montant total</p>
+              <h3 class="text-2xl font-bold mt-1">12,500 €</h3>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center">
+              <i class="fas fa-euro-sign text-success text-xl"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-card border border-gray-700 rounded-xl p-5 card-hover">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-400 text-sm">Taux d'acceptation</p>
+              <h3 class="text-2xl font-bold mt-1">62%</h3>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-chart-pie text-accent text-xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Propositions List -->
+      <div class="space-y-6">
+        <!-- Proposition 1 -->
+        <div class="bg-card border border-gray-700 rounded-xl p-6 card-hover relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent"></div>
+          
+          <div class="flex flex-col md:flex-row md:items-center gap-6">
+          
+            
+            <div class="flex-grow">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h2 class="text-xl font-bold">Nada lazreq</h2>
+                  <p class="text-gray-400 text-sm">Investisseur vérifié <i class="fas fa-check-circle text-success ml-1"></i></p>
+                </div>
+                <div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  <i class="fas fa-star mr-1"></i> Top investisseur
+                </div>
+              </div>
+              
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <p class="text-gray-400 text-sm">Montant proposé</p>
+                  <p class="text-white font-semibold">1 500 €</p>
+                </div>
+                <div>
+                  <p class="text-gray-400 text-sm">Date de proposition</p>
+                  <p class="text-white font-semibold">15/06/2025</p>
+                </div>
+                <div>
+                  <p class="text-gray-400 text-sm">Durée</p>
+                  <p class="text-white font-semibold">24 mois</p>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <p class="text-gray-400 text-sm">Message</p>
+                <p class="text-white italic">"Je crois au potentiel de votre entreprise et souhaite participer à son développement."</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <button class="flex-1 bg-success hover:bg-success/90 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-check"></i> Accepter
+            </button>
+            <button class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-times"></i> Refuser
+            </button>
+            <button class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-envelope"></i> Contacter
+            </button>
+          </div>
+        </div>
+        
+        <!-- Proposition 2 -->
+        <div class="bg-card border border-gray-700 rounded-xl p-6 card-hover relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-warning to-accent"></div>
+          
+          <div class="flex flex-col md:flex-row md:items-center gap-6">
+           
+            <div class="flex-grow">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h2 class="text-xl font-bold">Rim bouda</h2>
+                  <p class="text-gray-400 text-sm">Nouvel investisseur</p>
+                </div>
+                <div class="bg-warning/10 text-warning px-3 py-1 rounded-full text-sm font-medium">
+                  <i class="fas fa-bolt mr-1"></i> Offre limitée
+                </div>
+              </div>
+              
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <p class="text-gray-400 text-sm">Montant proposé</p>
+                  <p class="text-white font-semibold">2 000 €</p>
+                </div>
+                <div>
+                  <p class="text-gray-400 text-sm">Date de proposition</p>
+                  <p class="text-white font-semibold">12/06/2025</p>
+                </div>
+                <div>
+                  <p class="text-gray-400 text-sm">Durée</p>
+                  <p class="text-white font-semibold">18 mois</p>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <p class="text-gray-400 text-sm">Conditions spéciales</p>
+                <p class="text-white">Taux de rendement réduit de 2% pour les 6 premiers mois</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <button class="flex-1 bg-success hover:bg-success/90 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-check"></i> Accepter
+            </button>
+            <button class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-times"></i> Refuser
+            </button>
+            <button class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-file-contract"></i> Négocier
+            </button>
+          </div>
+        </div>
+        
+        <!-- Proposition 3 -->
+        <div class="bg-card border border-gray-700 rounded-xl p-6 card-hover relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 to-gray-700"></div>
+          
+          <div class="flex flex-col md:flex-row md:items-center gap-6">
+           
+            
+            <div class="flex-grow">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h2 class="text-xl font-bold">Amina Tribak</h2>
+                  <p class="text-gray-400 text-sm">Investisseur récurrent</p>
+                </div>
+                <div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  <i class="fas fa-history mr-1"></i> Ancien partenaire
+                </div>
+              </div>
+              
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <p class="text-gray-400 text-sm">Montant proposé</p>
+                  <p class="text-white font-semibold">1 000 €</p>
+                </div>
+                <div>
+                  <p class="text-gray-400 text-sm">Date de proposition</p>
+                  <p class="text-white font-semibold">10/06/2025</p>
+                </div>
+                <div>
+                  <p class="text-gray-400 text-sm">Durée</p>
+                  <p class="text-white font-semibold">12 mois</p>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <p class="text-gray-400 text-sm">Historique</p>
+                <p class="text-white">A déjà investi 3 500 € dans vos projets précédents</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <button class="flex-1 bg-success hover:bg-success/90 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-check"></i> Accepter
+            </button>
+            <button class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-times"></i> Refuser
+            </button>
+            <button class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-comment-dots"></i> Discuter
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="mt-10 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:bg-gray-800">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-medium">1</button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:bg-gray-800">2</button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:bg-gray-800">3</button>
+          <span class="px-2 text-gray-400">...</span>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:bg-gray-800">5</button>
+          <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:bg-gray-800">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-gray-800 bg-card">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+            <i class="fas fa-chart-line text-white"></i>
+          </div>
+          <span class="text-xl font-display font-bold">Pilot<span class="gradient-text">Cap</span></span>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-twitter text-lg"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-linkedin-in text-lg"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-instagram text-lg"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-10 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">
+          &copy; 2025 PilotCap. Tous droits réservés.
+        </p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition">Mentions légales</a>
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition">Confidentialité</a>
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition">Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
