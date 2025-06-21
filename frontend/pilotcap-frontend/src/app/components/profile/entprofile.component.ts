@@ -18,7 +18,7 @@ export class EntrepriseProfileComponent {
     nom: 'Ma Startup Innovante',
     secteur: 'Technologie Financière',
     email: 'contact@mastartup.com',
-    wallet: '0x742d35Cc6e54c8f329253b84f8c454e443874de',
+    wallet: '0x742d35Cc6...54e443874de',
     anneeCreation: 2020,
     chiffreAffaires: '2.4M €',
     capitalSocial: '500K €'
