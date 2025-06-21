@@ -103,13 +103,13 @@
           <i class="fas fa-arrow-trend-up"></i>
           <span>Commencer maintenant</span>
         </a>
-      
+
       </div>
-     
+
     </div>
   </section>
 
-  <!-- Entreprises -->
+
   <!-- Entreprises -->
 <section class="py-20 bg-gradient-to-b from-dark to-card border-t border-gray-800 mt-10">
   <div class="container mx-auto px-6">
@@ -120,32 +120,31 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Carte 1 -->
-      <div class="card-hover bg-card p-8 rounded-xl border border-gray-700 hover:border-accent/30 relative overflow-hidden">
+      <div *ngFor="let e of entreprises" class="card-hover bg-card p-8 rounded-xl border border-gray-700 hover:border-accent/30 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-16 h-16 bg-accent/10 rounded-bl-xl flex items-center justify-center">
-          <i class="fas fa-bolt text-accent"></i>
+          <i class="fas" [ngClass]="e.icone + ' text-accent'"></i>
         </div>
         <div class="flex items-center mb-6">
           <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-            <i class="fas fa-microchip text-primary text-2xl"></i>
+            <i class="fas" [ngClass]="e.icone + ' text-primary text-2xl'"></i>
           </div>
-          <h3 class="text-xl font-bold">TechCorp</h3>
+          <h3 class="text-xl font-bold">{{ e.nom }}</h3>
         </div>
         <div class="space-y-4 mb-8">
           <div class="flex justify-between items-center">
             <span class="text-gray-400">Rendement</span>
-            <span class="font-bold text-green-400">8%</span>
+            <span class="font-bold text-green-400">{{ e.taux }}%</span>
           </div>
           <div class="flex justify-between items-center">
             <span class="text-gray-400">Capital</span>
-            <span class="font-bold">500K €</span>
+            <span class="font-bold">{{ e.capital | number }} €</span>
           </div>
           <div class="w-full bg-gray-800 rounded-full h-2">
-            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+            <div class="bg-primary h-2 rounded-full" [style.width.%]="(e.disponible / e.capital) * 100"></div>
           </div>
           <div class="flex justify-between text-sm text-white/60">
             <span>Disponible</span>
-            <span>375K €</span>
+            <span>{{ e.disponible | number }} €</span>
           </div>
         </div>
         <a href="/login" class="w-full bg-primary/10 hover:bg-primary/20 text-primary font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition border border-primary/20">
@@ -153,76 +152,10 @@
           <span>Investir</span>
         </a>
       </div>
-
-      <!-- Carte 2 -->
-      <div class="card-hover bg-card p-8 rounded-xl border border-gray-700 hover:border-accent/30 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-16 h-16 bg-accent/10 rounded-bl-xl flex items-center justify-center">
-          <i class="fas fa-leaf text-accent"></i>
-        </div>
-        <div class="flex items-center mb-6">
-          <div class="w-14 h-14 bg-green-500/10 rounded-lg flex items-center justify-center mr-4">
-            <i class="fas fa-solar-panel text-green-400 text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold">GreenEnergy</h3>
-        </div>
-        <div class="space-y-4 mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-gray-400">Rendement</span>
-            <span class="font-bold text-green-400">6.5%</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-gray-400">Capital</span>
-            <span class="font-bold">300K €</span>
-          </div>
-          <div class="w-full bg-gray-800 rounded-full h-2">
-            <div class="bg-green-400 h-2 rounded-full" style="width: 45%"></div>
-          </div>
-          <div class="flex justify-between text-sm text-white/60">
-            <span>Disponible</span>
-            <span>135K €</span>
-          </div>
-        </div>
-        <a href="/login" class="w-full bg-green-500/10 hover:bg-green-500/20 text-green-400 font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition border border-green-500/20">
-          <i class="fas fa-euro-sign"></i>
-          <span>Investir</span>
-        </a>
-      </div>
-
-      <!-- Carte 3 -->
-      <div class="card-hover bg-card p-8 rounded-xl border border-gray-700 hover:border-accent/30 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-16 h-16 bg-accent/10 rounded-bl-xl flex items-center justify-center">
-          <i class="fas fa-seedling text-accent"></i>
-        </div>
-        <div class="flex items-center mb-6">
-          <div class="w-14 h-14 bg-amber-500/10 rounded-lg flex items-center justify-center mr-4">
-            <i class="fas fa-tractor text-amber-400 text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold">AgroStart</h3>
-        </div>
-        <div class="space-y-4 mb-8">
-          <div class="flex justify-between items-center">
-            <span class="text-gray-400">Rendement</span>
-            <span class="font-bold text-green-400">7.2%</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-gray-400">Capital</span>
-            <span class="font-bold">150K €</span>
-          </div>
-          <div class="w-full bg-gray-800 rounded-full h-2">
-            <div class="bg-amber-400 h-2 rounded-full" style="width: 85%"></div>
-          </div>
-          <div class="flex justify-between text-sm text-white/60">
-            <span>Disponible</span>
-            <span>127.5K €</span>
-          </div>
-        </div>
-        <a href="/login" class="w-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition border border-amber-500/20">
-          <i class="fas fa-euro-sign"></i>
-          <span>Investir</span>
-        </a>
-      </div>
     </div>
+
   </div>
+
 </section>
 
 

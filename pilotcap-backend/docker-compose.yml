@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://pilotcap:123456@localhost:27017/userdb
+    depends_on:
+      - mongo
+
+  investment-service:
+    build: ./investment-service
+    ports:
+      - "5001:5000"
+    environment:
+      - MONGO_URI=mongodb://pilotcap:123456@localhost:27017/investmentdb
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "80:80"
+    depends_on:
+      - user-service
+      - investment-service
+
+volumes:
+  mongo-data:
