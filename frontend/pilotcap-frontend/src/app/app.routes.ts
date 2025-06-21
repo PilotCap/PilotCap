@@ -6,6 +6,8 @@ import { EntrepriseComponent } from './components/entreprise/entreprise.componen
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddFundsComponent } from './components/addfunds/addfunds.component';
+import {InvestComponent} from './components/investment/invest.component';
+import {OpportunityComponent } from './components/opportunity/opportunity.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -13,5 +15,7 @@ export const routes: Routes = [
   { path: 'entprofile', component: EntrepriseProfileComponent },
   { path: 'dash', component: DashboardComponent},
   { path: 'funds', component: AddFundsComponent},
+  { path: 'invest', component: InvestComponent},
+  { path: 'opp', component: OpportunityComponent },
   { path: 'entreprise', component: EntrepriseComponent }
 ];

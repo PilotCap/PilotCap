@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PilotCap | Investissements</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            accent: '#f43f5e',
+            dark: '#0f172a',
+            card: '#1e293b',
+            success: '#10b981',
+            warning: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif']
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .btn-accent {
+      background-image: linear-gradient(to right, #f43f5e, #ec4899);
+      background-size: 200% auto;
+      transition: all 0.3s ease;
+    }
+    .btn-accent:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+    }
+    .balance-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .balance-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+  </style>
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <i class="fas fa-chart-line text-white"></i>
+        </div>
+        <h1 class="text-2xl font-display font-bold">Pilot<span class="gradient-text">Cap</span></h1>
+      </div>
+      <nav class="hidden md:flex space-x-6">
+        <a href="/" class="relative group">
+          <span class="text-white">Accueil</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white transition">Projets</a>
+        <a href="#" class="text-gray-400 hover:text-white transition">Dashboard</a>
+        <a href="#" class="text-gray-400 hover:text-white transition">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        
+        <a href="/login" class="btn-accent text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-xl">Déconnexion</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Solde & Boutons améliorés -->
+  <section class="bg-gradient-to-b from-dark to-card border-b border-gray-800">
+    <div class="container mx-auto px-6 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <!-- Carte de solde premium -->
+        <div class="balance-card bg-card/80 backdrop-blur-sm border border-gray-700 rounded-xl p-5 w-full md:w-auto min-w-[300px] relative overflow-hidden">
+          <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-primary/10"></div>
+          <div class="absolute -left-5 -bottom-5 w-20 h-20 rounded-full bg-accent/10"></div>
+          
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <i class="fas fa-wallet text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold">Votre solde disponible</h3>
+                <p class="text-xs text-gray-400">Solde total investissable</p>
+              </div>
+            </div>
+            
+            <div class="flex items-end gap-2">
+              <p class="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                €12,450.00
+              </p>
+              <span class="text-success mb-1 flex items-center text-sm">
+                <i class="fas fa-caret-up mr-1"></i> 2.5%
+              </span>
+            </div>
+            
+            <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-800">
+              <div>
+                <p class="text-xs text-gray-400">Investi</p>
+                <p class="font-medium">€8,200.00</p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Gains</p>
+                <p class="font-medium text-success">+€1,250.00</p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Dernière maj.</p>
+                <p class="font-medium">22/06/2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Boutons d'action -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <button class="btn-accent text-white px-6 py-3 rounded-lg flex-1 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent/20">
+            <i class="fas fa-plus"></i>
+            <span>Alimenter</span>
+          </button>
+          
+          <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg flex-1 flex items-center justify-center gap-2 transition-all border border-gray-700 hover:border-gray-600">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Retirer</span>
+          </button>
+          
+          <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg flex-1 flex items-center justify-center gap-2 transition-all border border-gray-700 hover:border-gray-600">
+            <i class="fas fa-chart-pie"></i>
+            <span>Portfolio</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+      <h2 class="text-3xl font-bold text-center md:text-left gradient-text">Opportunités d'Investissement</h2>
+      <div class="flex gap-3">
+        <div class="relative">
+          <select class="bg-card border border-gray-700 rounded-lg px-4 py-2 pr-8 appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50">
+            <option>Tous les secteurs</option>
+            <option>Technologie</option>
+            <option>Énergie</option>
+            <option>Santé</option>
+            <option>Agriculture</option>
+          </select>
+          <i class="fas fa-chevron-down absolute right-3 top-3 text-gray-400 pointer-events-none"></i>
+        </div>
+        <button class="bg-card border border-gray-700 rounded-lg px-4 py-2 hover:bg-gray-800 transition-all">
+          <i class="fas fa-sliders-h"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Grille des investissements -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Carte NeuroTech AI -->
+      <div class="bg-card border border-gray-700 rounded-xl p-6 hover:border-primary transition-all card-hover group">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 rounded-lg bg-indigo-900/30 flex items-center justify-center text-primary">
+            <i class="fas fa-brain text-2xl"></i>
+          </div>
+          <span class="bg-green-900/30 text-success text-xs px-2 py-1 rounded">Nouveau</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">NeuroTech AI</h3>
+        <p class="text-gray-400 mb-4">Plateforme d'IA médicale pour le diagnostic précoce</p>
+        
+        <div class="space-y-4 mb-6">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-400">Objectif</span>
+              <span class="font-medium">82% atteint</span>
+            </div>
+            <p class="font-bold mb-1">€1,200,000.00</p>
+            <div class="w-full bg-gray-800 rounded-full h-2">
+              <div class="bg-primary h-2 rounded-full" style="width: 82%"></div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-gray-400 text-sm">Ticket min.</p>
+              <p class="font-bold">€5,000.00</p>
+            </div>
+            <div>
+              <p class="text-gray-400 text-sm">Durée</p>
+              <p class="font-bold">3 ans</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-gray-400 text-sm mb-2">Montant à investir (€)</label>
+          <div class="relative">
+            <input type="number" 
+                   class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all"
+                   placeholder="5,000.00 minimum"
+                   min="5000"
+                   step="1000">
+            <div class="absolute right-3 top-3 text-gray-500 text-sm">€</div>
+          </div>
+        </div>
+        
+        <button class="w-full btn-accent text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent/20">
+          <i class="fas fa-euro-sign"></i>
+          <span>Investir maintenant</span>
+        </button>
+      </div>
+      
+      <!-- Carte GreenEnergy Solutions -->
+      <div class="bg-card border border-gray-700 rounded-xl p-6 hover:border-primary transition-all card-hover group">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 rounded-lg bg-emerald-900/30 flex items-center justify-center text-green-400">
+            <i class="fas fa-leaf text-2xl"></i>
+          </div>
+          <span class="bg-blue-900/30 text-blue-400 text-xs px-2 py-1 rounded">Populaire</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">GreenEnergy Solutions</h3>
+        <p class="text-gray-400 mb-4">Technologie de stockage d'énergie renouvelable</p>
+        
+        <div class="space-y-4 mb-6">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-400">Objectif</span>
+              <span class="font-medium">65% atteint</span>
+            </div>
+            <p class="font-bold mb-1">€800,000.00</p>
+            <div class="w-full bg-gray-800 rounded-full h-2">
+              <div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-gray-400 text-sm">Ticket min.</p>
+              <p class="font-bold">€2,500.00</p>
+            </div>
+            <div>
+              <p class="text-gray-400 text-sm">Durée</p>
+              <p class="font-bold">5 ans</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-gray-400 text-sm mb-2">Montant à investir (€)</label>
+          <div class="relative">
+            <input type="number" 
+                   class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all"
+                   placeholder="2,500.00 minimum"
+                   min="2500"
+                   step="500">
+            <div class="absolute right-3 top-3 text-gray-500 text-sm">€</div>
+          </div>
+        </div>
+        
+        <button class="w-full btn-accent text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent/20">
+          <i class="fas fa-euro-sign"></i>
+          <span>Investir maintenant</span>
+        </button>
+      </div>
+      
+      <!-- Carte UrbanFarm -->
+      <div class="bg-card border border-gray-700 rounded-xl p-6 hover:border-primary transition-all card-hover group">
+        <div class="flex justify-between items-start mb-4">
+          <div class="w-12 h-12 rounded-lg bg-amber-900/30 flex items-center justify-center text-amber-400">
+            <i class="fas fa-seedling text-2xl"></i>
+          </div>
+          <span class="bg-purple-900/30 text-purple-400 text-xs px-2 py-1 rounded">Bientôt complet</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">UrbanFarm</h3>
+        <p class="text-gray-400 mb-4">Fermes verticales urbaines automatisées</p>
+        
+        <div class="space-y-4 mb-6">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-400">Objectif</span>
+              <span class="font-medium">45% atteint</span>
+            </div>
+            <p class="font-bold mb-1">€1,500,000.00</p>
+            <div class="w-full bg-gray-800 rounded-full h-2">
+              <div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-gray-400 text-sm">Ticket min.</p>
+              <p class="font-bold">€10,000.00</p>
+            </div>
+            <div>
+              <p class="text-gray-400 text-sm">Durée</p>
+              <p class="font-bold">4 ans</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-gray-400 text-sm mb-2">Montant à investir (€)</label>
+          <div class="relative">
+            <input type="number" 
+                   class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all"
+                   placeholder="10,000.00 minimum"
+                   min="10000"
+                   step="1000">
+            <div class="absolute right-3 top-3 text-gray-500 text-sm">€</div>
+          </div>
+        </div>
+        
+        <button class="w-full btn-accent text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent/20">
+          <i class="fas fa-euro-sign"></i>
+          <span>Investir maintenant</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-card border-t border-gray-800 py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <i class="fas fa-chart-line text-white text-sm"></i>
+            </div>
+            <h3 class="text-lg font-bold">Pilot<span class="gradient-text">Cap</span></h3>
+          </div>
+          <p class="text-gray-400 text-sm">Plateforme d'investissement innovante pour les projets d'avenir.</p>
+          <div class="flex gap-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-gray-300 font-semibold mb-4">Investir</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Comment ça marche</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Projets disponibles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Rendements</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ Investisseurs</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-gray-300 font-semibold mb-4">Entreprises</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Proposer un projet</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Financement participatif</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Nos success stories</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-gray-300 font-semibold mb-4">Légal</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Mentions légales</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">CGU</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Risques</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm">© 2025 PilotCap. Tous droits réservés.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">Accessibilité</a>
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">Cookies</a>
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
