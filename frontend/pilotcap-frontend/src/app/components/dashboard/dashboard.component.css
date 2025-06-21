@@ -1,0 +1,27 @@
+.gradient-text {
+  background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-accent {
+  background-image: linear-gradient(to right, #f43f5e, #ec4899);
+  background-size: 200% auto;
+  transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+}
+
+/* Animation for the background blobs */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
