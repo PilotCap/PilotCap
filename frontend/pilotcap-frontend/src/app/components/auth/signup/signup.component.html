@@ -52,6 +52,37 @@
     <p *ngIf="passwordMismatch" class="text-red-400 text-sm mt-1">Passwords do not match</p>
   </div>
 
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-2">Choose your role</label>
+
+        <div class="flex space-x-4">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input
+              type="radio"
+              name="role"
+              [(ngModel)]="signupData.role"
+              value="investisseur"
+              required
+              class="accent-primary w-4 h-4"
+            />
+            <span>Investor</span>
+          </label>
+
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input
+              type="radio"
+              name="role"
+              [(ngModel)]="signupData.role"
+              value="entreprise"
+              class="accent-primary w-4 h-4"
+            />
+            <span>Company</span>
+          </label>
+        </div>
+      </div>
+
+
+
       <button type="submit"
         class="w-full py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:opacity-90 transition duration-200">
         Sign Up

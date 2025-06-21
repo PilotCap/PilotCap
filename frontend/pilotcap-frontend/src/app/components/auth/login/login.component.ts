@@ -20,16 +20,29 @@ export class LoginComponent {
 
   isLoading = false;
 
-
   constructor(private http: HttpClient, private router: Router) {}
+
   onSubmit() {
     this.isLoading = true;
 
     this.http.post<any>('http://localhost:5000/api/users/login', this.credentials)
       .subscribe({
         next: (res) => {
+          // ✅ Stocker les infos importantes
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/dash']);
+          localStorage.setItem('userId', res.user.id);
+          localStorage.setItem('role', res.user.role);
+
+          // ✅ Redirection selon le rôle
+          if (res.user.role === 'investisseur') {
+            this.router.navigate(['/dash']);
+          } else if (res.user.role === 'entreprise') {
+            this.router.navigate(['/entreprise']);
+          } else {
+            this.router.navigate(['/']); // fallback
+          }
+
+          this.isLoading = false;
         },
         error: (err) => {
           console.error('Login failed', err);

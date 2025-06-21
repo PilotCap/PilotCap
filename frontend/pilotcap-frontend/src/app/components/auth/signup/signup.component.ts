@@ -16,7 +16,8 @@ export class SignupComponent {
   signupData = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    role: ''
   };
 
   confirmPassword: string = '';
@@ -34,16 +35,20 @@ onSubmit() {
 
   this.isSubmitting = true;
 
-  this.http.post<any>('http://localhost:5000/api/users/signup', this.signupData)
-    .subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.token);
+  console.log('Signup Data:', this.signupData);
+
+  this.http.post('http://localhost:5000/api/users/signup', this.signupData)
+    .subscribe((response: any) => {
+      localStorage.setItem('userId', response.userId);
+      localStorage.setItem('role', response.role);
+
+      if (response.role === 'investisseur') {
         this.router.navigate(['/dash']);
-      },
-      error: (err) => {
-        alert(err.error.message || 'Signup failed');
-        this.isSubmitting = false;
+      } else if (response.role === 'entreprise') {
+        this.router.navigate(['/entreprise']);
       }
+    }, error => {
+      alert('Signup failed');
     });
 }
 
