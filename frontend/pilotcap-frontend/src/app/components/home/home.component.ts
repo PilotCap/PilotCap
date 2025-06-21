@@ -1,31 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon'; // Add this for icons
-import { MatDividerModule } from '@angular/material/divider'; // Add this for dividers
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
     RouterLink,
-    // Import Material modules directly (no need for MaterialModule in standalone)
+    HttpClientModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule, 
+    MatIconModule,
     MatDividerModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  entreprises = [
-    { nom: 'TechCorp', taux: 8, capital: 500000 },
-    { nom: 'GreenEnergy', taux: 6.5, capital: 300000 },
-    { nom: 'AgroStart', taux: 7.2, capital: 150000 }
-  ];
+export class HomeComponent implements OnInit {
+  entreprises: any[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get<any[]>('http://localhost:5002/api/entreprises')
+      .subscribe({
+        next: (data) => this.entreprises = data,
+        error: (err) => console.error('Erreur chargement entreprises', err)
+      });
+  }
 }
