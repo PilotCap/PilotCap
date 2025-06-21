@@ -1,0 +1,35 @@
+.gradient-text {
+  background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-accent {
+  background-image: linear-gradient(to right, #f43f5e, #ec4899);
+  background-size: 200% auto;
+  transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+}
+/* Animation du logo MetaMask */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Style des boutons crypto */
+.bg-orange-500 {
+  background-color: #f6851b; /* Couleur officielle MetaMask */
+}
+
+.bg-orange-500:hover {
+  background-color: #e2761b;
+}

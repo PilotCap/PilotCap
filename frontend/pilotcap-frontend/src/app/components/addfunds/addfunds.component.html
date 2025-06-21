@@ -1,0 +1,96 @@
+<div class="bg-dark text-gray-300 min-h-screen p-6">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <i class="fas fa-chart-line text-white"></i>
+        </div>
+        <h1 class="text-2xl font-display font-bold">Pilot<span class="gradient-text">Cap</span></h1>
+      </div>
+      <a href="/dashboard" class="text-gray-300 hover:text-white transition">
+        <i class="fas fa-arrow-left mr-2"></i> Retour
+      </a>
+    </div>
+  </header>
+
+  <!-- Formulaire d'ajout de fonds -->
+  <section class="container mx-auto px-6 py-12 max-w-2xl">
+    <div class="bg-card border border-gray-700 rounded-xl p-8">
+      <h2 class="text-2xl font-display font-bold mb-6">
+        <i class="fas fa-wallet mr-2"></i> Ajouter des fonds
+      </h2>
+
+      <!-- Montant -->
+      <div class="mb-6">
+        <label class="block text-gray-400 mb-2">Montant (€)</label>
+        <input 
+          type="number" 
+          min="50" 
+          [(ngModel)]="amount"
+          class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50"
+          placeholder="50 € minimum"
+        >
+      </div>
+
+      <!-- Méthode de paiement -->
+      <div class="mb-8">
+        <label class="block text-gray-400 mb-4">Méthode de paiement</label>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Carte Bancaire -->
+          <button 
+            (click)="selectPaymentMethod('card')" 
+            [ngClass]="{'border-primary': selectedMethod === 'card'}"
+            class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-primary transition"
+          >
+            <i class="fab fa-cc-visa text-3xl mb-2 text-blue-400"></i>
+            <p class="font-medium">Carte bancaire</p>
+          </button>
+
+          <!-- Virement Bancaire -->
+          <button 
+          
+            (click)="selectPaymentMethod('transfer')" 
+            [ngClass]="{'border-primary': selectedMethod === 'transfer'}"
+            class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-primary transition"
+          >
+             <div class="flex justify-center mb-8">
+        <img 
+          src="assets/metamask-logo.svg" 
+          alt="MetaMask" 
+          class="h-20 animate-float"
+          onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg'"
+        >
+      </div>
+            <p class="font-medium">Metamask</p>
+          </button>
+
+          <!-- Crypto -->
+          <button 
+            (click)="selectPaymentMethod('crypto')" 
+            [ngClass]="{'border-primary': selectedMethod === 'crypto'}"
+            class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-primary transition"
+          >
+            <i class="fab fa-bitcoin text-3xl mb-2 text-amber-400"></i>
+            <p class="font-medium">Binance</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bouton de confirmation -->
+      <button 
+        (click)="addFunds()" 
+        [disabled]="!amount || !selectedMethod"
+        class="btn-accent text-white font-semibold w-full py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <i class="fas fa-check-circle mr-2"></i> Confirmer le dépôt
+      </button>
+
+      <!-- Sécurité -->
+      <div class="mt-6 flex items-start text-sm text-gray-400">
+        <i class="fas fa-shield-alt text-primary mr-2 mt-1"></i>
+        <p>Paiement sécurisé via Stripe & Binance. Aucune donnée bancaire n'est stockée sur nos serveurs.</p>
+      </div>
+    </div>
+  </section>
+</div>
