@@ -1,4 +1,53 @@
-<div class="bg-dark text-gray-300 min-h-screen flex flex-col">
+ <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-accent {
+      background-image: linear-gradient(to right, #6366f1, #f43f5e);
+      background-size: 200% auto;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-accent:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+    }
+    
+    .status-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .investor-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid;
+      object-fit: cover;
+    }
+  </style>
+  <div class="bg-dark text-gray-300 min-h-screen flex flex-col">
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -9,12 +58,18 @@
         <h1 class="text-2xl font-display font-bold">Pilot<span class="gradient-text">Cap</span></h1>
       </div>
       <nav class="hidden md:flex space-x-6">
-        <a routerLink="/entreprise" class="text-gray-400 hover:text-white transition">Dashboard</a>
-        <a routerLink="/entreprise" class="text-white font-medium">Profil Entreprise</a>
+        <a href="/entreprise" class="text-gray-400 hover:text-white transition relative group">
+          <span>Dashboard</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+         <a href="/entprofile" class="text-gray-400 hover:text-white transition relative group">
+          <span>Profile Entrprise</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
       </nav>
        <div class="flex items-center space-x-4">
         
-        <a href="/login" class="btn-accent text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-xl">Déconnexion</a>
+                <a href="/signup" class="btn-accent text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-xl">Déconnexion</a>
       </div>
     </div>
   </header>
