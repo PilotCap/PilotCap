@@ -1,4 +1,53 @@
-<div class="bg-dark text-gray-300 min-h-screen flex flex-col">
+ <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-accent {
+      background-image: linear-gradient(to right, #6366f1, #f43f5e);
+      background-size: 200% auto;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-accent:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+    }
+    
+    .status-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .investor-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid;
+      object-fit: cover;
+    }
+  </style>
+  <div class="bg-dark text-gray-300 min-h-screen flex flex-col">
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -9,95 +58,57 @@
         <h1 class="text-2xl font-display font-bold">Pilot<span class="gradient-text">Cap</span></h1>
       </div>
       <nav class="hidden md:flex space-x-6">
-        <a routerLink="/entreprise" class="text-gray-400 hover:text-white transition">Dashboard</a>
-        <a routerLink="/entreprise" class="text-white font-medium">Profil Entreprise</a>
+        <a href="/entreprise" class="text-gray-400 hover:text-white transition relative group">
+          <span>Dashboard</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+         <a href="/entprofile" class="text-gray-400 hover:text-white transition relative group">
+          <span>Profile Entrprise</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
       </nav>
        <div class="flex items-center space-x-4">
         
-        <a href="/login" class="btn-accent text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-xl">Déconnexion</a>
+                <a href="/signup" class="btn-accent text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-xl">Déconnexion</a>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow container mx-auto px-6 py-12">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Carte Profil -->
-     <div class="max-w-6xl mx-auto">
-      <!-- Mode Visualisation -->
-      <div *ngIf="!editMode" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Carte Profil -->
-        <div class="lg:col-span-2 bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden">
-          <div class="p-8">
-            <div class="flex justify-between items-start">
-              <div>
-                <h2 class="text-3xl font-bold text-white mb-2">{{ entreprise.nom }}</h2>
-                <div class="flex items-center">
-                  <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">{{ entreprise.secteur }}</span>
-                  <span class="ml-3 text-sm text-gray-400">Depuis {{ entreprise.anneeCreation }}</span>
-                </div>
-              </div>
-              <button (click)="activateEditMode()" class="btn-accent text-white px-4 py-2 rounded-lg flex items-center">
-                <i class="fas fa-edit mr-2"></i> Modifier
-              </button>
-            </div>
+<main class="flex-grow container mx-auto px-6 py-12">
+  <div class="max-w-6xl mx-auto">
 
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="bg-gray-800/20 p-5 rounded-lg border border-gray-700">
-                <h3 class="text-sm font-medium text-gray-400 mb-2">Email</h3>
-                <p class="text-white text-lg">{{ entreprise.email }}</p>
+    <!-- 🔁 Mode Visualisation -->
+    <div *ngIf="!editMode" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Carte Profil -->
+      <div class="lg:col-span-2 bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden">
+        <div class="p-8">
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-3xl font-bold text-white mb-2">{{ entreprise.nom }}</h2>
+              <div class="flex items-center">
+                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">{{ entreprise.secteur }}</span>
+                <span class="ml-3 text-sm text-gray-400">Depuis {{ entreprise.anneeCreation }}</span>
               </div>
-              <div class="bg-gray-800/20 p-5 rounded-lg border border-gray-700">
-                <h3 class="text-sm font-medium text-gray-400 mb-2">Wallet</h3>
-                <p class="text-primary font-mono text-lg">{{ entreprise.wallet }}</p>
-              </div>
+            </div>
+            <button (click)="editMode = true" class="btn-accent text-white px-4 py-2 rounded-lg flex items-center">
+              <i class="fas fa-edit mr-2"></i> Modifier
+            </button>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-gray-800/20 p-5 rounded-lg border border-gray-700">
+              <h3 class="text-sm font-medium text-gray-400 mb-2">Email</h3>
+              <p class="text-white text-lg">{{ entreprise.email }}</p>
+            </div>
+            <div class="bg-gray-800/20 p-5 rounded-lg border border-gray-700">
+              <h3 class="text-sm font-medium text-gray-400 mb-2">Wallet</h3>
+              <p class="text-primary font-mono text-lg">{{ entreprise.wallet }}</p>
             </div>
           </div>
         </div>
-
-     
-
-      <!-- Mode Édition -->
-      <div *ngIf="editMode" class="bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden p-8">
-        <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
-          <i class="fas fa-edit text-primary mr-2"></i>
-          Modifier le profil
-        </h2>
-
-        <form (ngSubmit)="saveChanges()" class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-400 mb-2">Nom de l'entreprise</label>
-              <input type="text" [(ngModel)]="entreprise.nom" name="nom" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-400 mb-2">Secteur d'activité</label>
-              <input type="text" [(ngModel)]="entreprise.secteur" name="secteur" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
-              <input type="email" [(ngModel)]="entreprise.email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-400 mb-2">Adresse Wallet</label>
-              <input type="text" [(ngModel)]="entreprise.wallet" name="wallet" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary">
-            </div>
-          </div>
-
-          <div class="flex justify-end space-x-4 pt-6">
-            <button type="button" (click)="cancelEdit()" class="px-6 py-2 border border-gray-600 rounded-lg hover:bg-gray-800 transition">
-              Annuler
-            </button>
-            <button type="submit" class="btn-accent text-white px-6 py-2 rounded-lg hover:opacity-90 transition">
-              Enregistrer
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+
       <!-- Carte Financière -->
       <div class="bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden">
         <div class="p-8">
@@ -134,7 +145,7 @@
       </div>
 
       <!-- Carte Investisseurs -->
-      <div class="lg:col-span-3 bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden">
+      <div class="lg:col-span-3 bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden mt-8">
         <div class="p-8">
           <h3 class="text-xl font-bold text-white mb-6 flex items-center">
             <i class="fas fa-users text-primary mr-2"></i>
@@ -152,6 +163,7 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-800">
+                <!-- Ligne 1 -->
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
@@ -166,11 +178,10 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-white">150K €</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">15/06/2023</td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-900/20 text-green-400">
-                      Seed
-                    </span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-900/20 text-green-400">Seed</span>
                   </td>
                 </tr>
+                <!-- Ligne 2 -->
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
@@ -185,9 +196,7 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-white">300K €</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">22/03/2023</td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-900/20 text-blue-400">
-                      Série A
-                    </span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-900/20 text-blue-400">Série A</span>
                   </td>
                 </tr>
               </tbody>
@@ -196,7 +205,56 @@
         </div>
       </div>
     </div>
-  </main>
+
+    <!-- 🛠️ Mode Édition -->
+    <div *ngIf="editMode" class="mt-12 bg-card border border-gray-700 rounded-xl shadow-lg overflow-hidden p-8">
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+        <i class="fas fa-edit text-primary mr-2"></i>
+        Modifier le profil
+      </h2>
+
+      <form (ngSubmit)="saveChanges()" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">Nom de l'entreprise</label>
+            <input type="text" [(ngModel)]="entreprise.nom" name="nom"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">Secteur d'activité</label>
+            <input type="text" [(ngModel)]="entreprise.secteur" name="secteur"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+            <input type="email" [(ngModel)]="entreprise.email" name="email"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">Adresse Wallet</label>
+            <input type="text" [(ngModel)]="entreprise.wallet" name="wallet"
+              class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary" />
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-4 pt-6">
+          <button type="button" (click)="editMode = false"
+            class="px-6 py-2 border border-gray-600 rounded-lg hover:bg-gray-800 transition">
+            Annuler
+          </button>
+          <button type="submit"
+            class="btn-accent text-white px-6 py-2 rounded-lg hover:opacity-90 transition">
+            Enregistrer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
 
   <!-- Footer -->
   <footer class="bg-dark border-t border-gray-800 py-8">

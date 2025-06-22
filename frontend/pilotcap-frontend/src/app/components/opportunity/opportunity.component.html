@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PilotCap | Espace Entreprise</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            accent: '#f43f5e',
+            dark: '#0f172a',
+            card: '#1e293b',
+            success: '#10b981',
+            warning: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .btn-accent {
+      background-image: linear-gradient(to right, #f43f5e, #ec4899);
+      background-size: 200% auto;
+      transition: all 0.3s ease;
+    }
+    .btn-accent:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+    }
+    .file-upload {
+      border: 2px dashed #334155;
+      transition: all 0.3s ease;
+    }
+    .file-upload:hover {
+      border-color: #6366f1;
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+  </style>
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <i class="fas fa-chart-line text-white"></i>
+        </div>
+        <h1 class="text-2xl font-bold">Pilot<span class="gradient-text">Cap</span></h1>
+      </div>
+      <nav class="hidden md:flex items-center gap-6">
+         <a href="/entreprise" class="text-gray-400 hover:text-white transition relative group">
+          <span>Dashboard</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+         <a href="/entprofile" class="text-gray-400 hover:text-white transition relative group">
+          <span>Profile Entrprise</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+      </nav>
+       <div class="flex items-center space-x-4">
+        <a href="/signup" class="btn-accent text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:shadow-xl">Déconnexion</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bannier Entreprise -->
+  <section class="bg-gradient-to-r from-card to-dark border-b border-gray-800">
+    <div class="container mx-auto px-6 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold mb-2">Espace <span class="gradient-text">Entreprise</span></h2>
+          <p class="text-gray-400 max-w-lg">Proposez vos opportunités d'investissement à notre communauté d'investisseurs qualifiés</p>
+        </div>
+        <div class="bg-primary/10 border border-primary/30 rounded-lg px-4 py-3">
+          <p class="text-sm font-medium"><i class="fas fa-star text-yellow-400 mr-2"></i>Statut Entreprise <span class="text-white">Certifiée</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu Principal -->
+  <main class="container mx-auto px-6 py-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-card border border-gray-700 rounded-xl overflow-hidden">
+        <!-- Étapes -->
+        <div class="border-b border-gray-800 p-6">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">1</div>
+              <span class="font-medium">Informations de base</span>
+            </div>
+            <div class="h-px bg-gray-700 flex-1 mx-4"></div>
+            <div class="flex items-center gap-2 text-gray-500">
+              <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">2</div>
+              <span>Détails financiers</span>
+            </div>
+            <div class="h-px bg-gray-700 flex-1 mx-4"></div>
+            <div class="flex items-center gap-2 text-gray-500">
+              <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">3</div>
+              <span>Validation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-6">Nouvelle opportunité d'investissement</h3>
+          
+          <form>
+            <!-- Section 1 : Informations projet -->
+            <div class="mb-8">
+              <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Informations du projet</span>
+              </h4>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-gray-400 mb-2">Nom du projet*</label>
+                  <input type="text" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all" required>
+                </div>
+                
+                <div>
+                  <label class="block text-gray-400 mb-2">Secteur d'activité*</label>
+                  <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none appearance-none">
+                    <option>Sélectionner...</option>
+                    <option>Technologie</option>
+                    <option>Énergie</option>
+                    <option>Santé</option>
+                    <option>Agriculture</option>
+                    <option>Immobilier</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+                
+                <div class="md:col-span-2">
+                  <label class="block text-gray-400 mb-2">Description du projet*</label>
+                  <textarea rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all" required></textarea>
+                  <p class="text-gray-500 text-xs mt-1">Décrivez votre projet en 200-300 mots (objectifs, innovation, équipe...)</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Section 2 : Visuels -->
+            <div class="mb-8">
+              <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-image text-primary"></i>
+                <span>Visuels du projet</span>
+              </h4>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-gray-400 mb-2">Logo du projet</label>
+                  <div class="file-upload rounded-lg p-6 text-center cursor-pointer">
+                    <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+                    <p class="text-gray-400 mb-1">Glissez-déposez votre logo ici</p>
+                    <p class="text-gray-500 text-sm">Format JPG/PNG - Max 2MB</p>
+                    <input type="file" class="hidden" accept="image/*">
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block text-gray-400 mb-2">Image de couverture</label>
+                  <div class="file-upload rounded-lg p-6 text-center cursor-pointer">
+                    <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+                    <p class="text-gray-400 mb-1">Glissez-déposez votre image ici</p>
+                    <p class="text-gray-500 text-sm">Format JPG/PNG - Max 5MB</p>
+                    <input type="file" class="hidden" accept="image/*">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Section 3 : Vidéo -->
+            <div class="mb-8">
+              <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-video text-primary"></i>
+                <span>Présentation vidéo (optionnel)</span>
+              </h4>
+              
+              <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-1">
+                  <label class="block text-gray-400 mb-2">Lien YouTube/Vimeo</label>
+                  <input type="url" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all" placeholder="https://">
+                </div>
+                
+                <div class="flex-1">
+                  <label class="block text-gray-400 mb-2">Ou télécharger une vidéo</label>
+                  <div class="file-upload rounded-lg p-4 text-center cursor-pointer flex items-center justify-center gap-3">
+                    <i class="fas fa-film text-gray-500"></i>
+                    <p class="text-gray-400">Télécharger un fichier vidéo</p>
+                    <input type="file" class="hidden" accept="video/*">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Boutons de navigation -->
+            <div class="flex justify-between pt-6 border-t border-gray-800">
+              <button type="button" class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg transition-all">
+                <i class="fas fa-times mr-2"></i> Annuler
+              </button>
+              
+              <button type="button" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-lg transition-all flex items-center gap-2">
+                <span>Suivant</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Projets en cours -->
+      <div class="mt-12">
+        <h3 class="text-xl font-bold mb-6">Vos projets en cours</h3>
+        
+        <div class="bg-card border border-gray-700 rounded-xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-800/50 border-b border-gray-800">
+                <tr>
+                  <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">Projet</th>
+                  <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">Statut</th>
+                  <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">Montant</th>
+                  <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">Progression</th>
+                  <th class="px-6 py-3 text-right text-sm font-medium text-gray-400">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded bg-indigo-900/30 flex items-center justify-center">
+                        <i class="fas fa-brain text-indigo-400"></i>
+                      </div>
+                      <div>
+                        <p class="font-medium">NeuroTech AI</p>
+                        <p class="text-gray-500 text-sm">Technologie</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded">En cours</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    €1,200,000.00
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center gap-2">
+                      <div class="w-20 bg-gray-800 rounded-full h-1.5">
+                        <div class="bg-primary h-1.5 rounded-full" style="width: 82%"></div>
+                      </div>
+                      <span class="text-sm">82%</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right">
+                    <button class="text-gray-400 hover:text-white p-1">
+                      <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded bg-emerald-900/30 flex items-center justify-center">
+                        <i class="fas fa-leaf text-emerald-400"></i>
+                      </div>
+                      <div>
+                        <p class="font-medium">GreenEnergy Solutions</p>
+                        <p class="text-gray-500 text-sm">Énergie</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="bg-yellow-900/30 text-yellow-400 text-xs px-2 py-1 rounded">En attente</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    €800,000.00
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center gap-2">
+                      <div class="w-20 bg-gray-800 rounded-full h-1.5">
+                        <div class="bg-primary h-1.5 rounded-full" style="width: 0%"></div>
+                      </div>
+                      <span class="text-sm">0%</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right">
+                    <button class="text-gray-400 hover:text-white p-1">
+                      <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-card border-t border-gray-800 py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <i class="fas fa-chart-line text-white text-sm"></i>
+            </div>
+            <h3 class="text-lg font-bold">Pilot<span class="gradient-text">Cap</span></h3>
+          </div>
+          <p class="text-gray-400 text-sm">Plateforme de financement innovante pour les entreprises à fort potentiel.</p>
+        </div>
+        
+        <div>
+          <h4 class="text-gray-300 font-semibold mb-4">Entreprise</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Proposer un projet</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Tarifs</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Ressources</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Success stories</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-gray-300 font-semibold mb-4">Assistance</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Centre d'aide</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Contactez-nous</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ Entreprises</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-gray-300 font-semibold mb-4">Légal</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Mentions légales</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">CGU</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+        <p class="text-gray-500 text-sm">© 2024 PilotCap. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
