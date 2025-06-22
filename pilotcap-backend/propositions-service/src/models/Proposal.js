@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const proposalSchema = new mongoose.Schema({
-    investorName: String,
+    investor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     amount: Number,
     date: Date,
     duration: Number,
