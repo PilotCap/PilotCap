@@ -109,3 +109,6 @@ Le projet repose sur une architecture **frontend Angular + backend Node.js micro
 - Creation d'opportunité
 ![img_14.png](img_14.png)
 ![img_15.png](img_15.png)
+
+Lien du site sur AWS
+https://52.47.206.33/
