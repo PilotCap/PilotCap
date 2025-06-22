@@ -58,10 +58,10 @@ Le projet repose sur une architecture **frontend Angular + backend Node.js micro
 
 ## 🛠️ Technologies principales
 
-| Côté            | Stack                                      |
-|-----------------|--------------------------------------------|
-| **Frontend**    | Angular 15+, Tailwind CSS, Font Awesome     |
-| **Backend**     | Node.js, Express.js, MongoDB, JWT, Mongoose |
+| Côté            | Stack                                                         |
+|-----------------|---------------------------------------------------------------|
+| **Frontend**    | Angular 17+, Tailwind CSS, Font Awesome                       |
+| **Backend**     | Node.js, Express.js, MongoDB, JWT, Mongoose                   |
 | **Arch. backend** | Microservices modulaires (User, Entreprise, Investment, etc.) |
 
 ---
@@ -90,22 +90,30 @@ Le projet repose sur une architecture **frontend Angular + backend Node.js micro
 
 ## 🖥️ Interfaces
 - Authentification
-![img_5.png](img_5.png)
+![img_16.png](img_16.png)
+
 - Inscription
 ![img_6.png](img_6.png)
+
 - Page d'accueil
 ![img_7.png](img_7.png)
 ![img_8.png](img_8.png)
+
 - Dashboard Investisseur
 ![img_9.png](img_9.png)
+
 - Ajouter des fonds
 ![img_10.png](img_10.png)
+
 - Page des opportunités d'ivestissements
 ![img_11.png](img_11.png)
+
 - Profil de l'entreprise
 ![img_12.png](img_12.png)
+
 - Propositions reçues
 ![img_13.png](img_13.png)
+
 - Creation d'opportunité
 ![img_14.png](img_14.png)
 ![img_15.png](img_15.png)
